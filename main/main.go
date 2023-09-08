@@ -16,9 +16,9 @@ func main() {
 		currentDay := time.Now().UTC().Format("Friday")
 		currentUTC := time.Now().UTC()
 		currentTime := currentUTC.Format("2006-01-02T15:04:05Z")
-		githubFileURL := "https://github.com/MikeMwita/hng/blob/main/blob/main/main.go"
+		githubFileURL := "https://github.com/MikeMwita/blob/blob/main/main/main.go"
 
-		githubRepoURL := "https://github.com/MikeMwita/hng"
+		githubRepoURL := "https://github.com/MikeMwita/blob"
 
 		responseData := gin.H{
 			"slack_name":      slackName,
