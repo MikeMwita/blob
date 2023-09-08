@@ -11,19 +11,25 @@ import (
 func main() {
 	r := gin.Default()
 	r.Use(CORSMiddleware())
-
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
-
 	if err := r.Run(":" + port); err != nil {
 		log.Panicf("error: %s", err)
 	}
 
 	r.GET("/api", func(c *gin.Context) {
-		slackName := c.DefaultQuery("slack_name", "Michael")
-		track := c.DefaultQuery("track", "backend")
+		slackName := c.Query("slack_name")
+		if slackName == "" {
+			slackName = "Michael"
+		}
+
+		track := c.Query("track")
+		if track == "" {
+			track = "backend"
+		}
+
 		currentDay := time.Now().UTC().Format("Friday")
 		currentUTC := time.Now().UTC()
 		currentTime := currentUTC.Format("2006-01-02T15:04:05Z")
